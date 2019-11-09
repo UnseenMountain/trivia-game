@@ -33,8 +33,8 @@ body{
 }
 
 .contain{
-    width: 900px;
-    max-width: 100%;
+    width: 800px;
+    max-width: 80%;
     background-color: white;
     padding: 10px;
     border-radius: 5px;

@@ -1,114 +1,67 @@
-// var questionsCorrect = 0;
-
-
-// var questions = {
-
-
-//     question1 :  "Where is Waldo currently?",
-//     answerA : "The Arctic",
-//     answerB : "Saturn",
-//     answerC : "The Death Star",
-//     answerD : "Doing his own thing, stop asking",
-
-//     correctAnswer = answerD,
-
-//     question2 : "Who is the strongest?",
-//   answerA : "Goku",
-//   answerB : "Saitama",
-//   answerC : "Jedi Reavan",
-//   answerD : "A Vault hunter",
-//   answerE : "All of them",
-
-//   correctAnswer : ""
-// }
 
 const startButton = document.getElementById("start");
-const questionContainer = document.getElementById("question-container");
+const questionContainerElement = document.getElementById("question-container");
+const questionElement = document.getElementById('question')
+const answerButtonElement = document.getElementById("answer-buttons")
+
+let shuffledQuestions, currentQuestionIndex
 
 startButton.addEventListener("click", startGame);
 
 function startGame(){
-  console.log("statted")
+  console.log("statted");
   startButton.classList.add("hide");
-  questionContainer.classList.remove("hide")
+  shuffledQuestions = questions.sort(() => Math.random() - .5);
+  currentQuestionIndex = 0;
+  questionContainerElement.classList.remove("hide");
+  setNextQuestion();
 
 }
 
+function setNextQuestion() {
+  showQuestion(shuffledQuestions [currentQuestionIndex]);
+}
+
+function showQuestion(question){
+  questionElement.innerText = question.question
+
+}
+
+function selectAnswer() {
 
 
+}
 
-// var checkAnswer1 = function() {
+const questions = [ 
+  {
+    question :  "Where is Waldo currently?",
+    answers: [ 
+      { text: "The Arctic", correct: false},
+      { text: "Saturn", correct: false},
+      { text: "The Death Star", correct: false},
+      { text: "Doing his own thing, stop asking", correct: true}
+    ]
+  }
+]
+//   {
+//     question :  "Who is the strongest?",
+//     answers: [ 
+//       { text: "Goku", correct: true},
+//       { text: "Saitama", correct: true},
+//       { text: "A vault Hunter", correct: true},
+//       { text: "All of the above", correct: true}
+//     ]
+//   },
+  
+//   {
+//     question :  "Who was the OS?",
+//     answers: [ 
+//       { text: "Johnny Depp", correct: false},
+//       { text: "Brad Pitt", correct: false},
+//       { text: "Washington", correct: false},
+//       { text: "Snoop Dog", correct: true}
+//     ]
+//   },
 
-//     var radios = document.getElementsByName('answer1');
-//     var val= "";
-//     for (var i = 0, length = radios.length; i < length; i++) {
-//         if (radios[i].checked) {
-//            val = radios[i].value; 
-//            break;
-//          }
-//     }
-    
-//     if (val == "" ) {
-//       if(val == "Doing his own thing. stop asking");
-//     } else if ( val == "Doing his own thing. stop asking" ) {
-//       alert('Your answer is correct!');
-//     } else {
-//       alert('Answer is wrong');
-//     }
-//   }
+// ]
 
-//     var checkAnswer2 = function() {
-//     var radios = document.getElementsByName('answer2');
-//     var val= "";
-//     for (var i = 0, length = radios.length; i < length; i++) {
-//         if (radios[i].checked) {
-//            val = radios[i].value; 
-//            break;
-//          }
-//     }
-    
-//     if (val == "" ) {
-//       if(val == "All of them");
-//     } else if ( val == "All of them" ) {
-//       alert('Your answer is correct!');
-//     } else {
-//       alert('Answer is wrong');
-//     }
-//   };
-
-//   var checkAnswer3 = function(){
-//     var radios = document.getElementsByName('answer3');
-//     var val= "";
-//     for (var i = 0, length = radios.length; i < length; i++) {
-//         if (radios[i].checked) {
-//            val = radios[i].value; 
-//            break;
-//          }
-//     }
-    
-//     if (val == "" ) {
-//       if(val == "Snoop Dog");
-//     } else if ( val == "Snoop Dog" ) {
-//       alert('Your answer is correct!');
-//     } else {
-//       alert('Your answer is wrong');
-//     }
-//   };
-//   var checkAnswer4 = function(){
-//     var radios = document.getElementsByName('answer3');
-//     var val= "";
-//     for (var i = 0, length = radios.length; i < length; i++) {
-//         if (radios[i].checked) {
-//            val = radios[i].value; 
-//            break;
-//          }
-//     }
-    
-//     if (val == "" ) {
-//       if(val == "All of the above");
-//     } else if ( val == "Snoop Dog" ) {
-//       alert('Your answer is correct!');
-//     } else {
-//       alert('Your answer is wrong');
-//     }
-//   };
