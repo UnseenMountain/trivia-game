@@ -1,6 +1,6 @@
 
 const startButton = document.getElementById("start");
-const nextButton = document.getElementById("next-btn");
+const nextButton = document.getElementById("next");
 const questionContainerElement = document.getElementById("question-container");
 const questionElement = document.getElementById('question')
 const answerButtonElement = document.getElementById("answer-buttons")
@@ -8,9 +8,12 @@ const answerButtonElement = document.getElementById("answer-buttons")
 let shuffledQuestions, currentQuestionIndex
 
 startButton.addEventListener("click", startGame);
+nextButton.addEventListener("click", () => {
+  currentQuestionIndex++;
+  setNextQuestion();
+})
 
 function startGame() {
-  console.log("statted");
   startButton.classList.add("hide");
   shuffledQuestions = questions.sort(() => Math.random() - .5);
   currentQuestionIndex = 0;
@@ -42,12 +45,12 @@ function resetState() {
   clearStatusClass(document.body)
   nextButton.classList.add('hide')
   while (answerButtonElement.firstChild) {
-    answerButtonsElement.removeChild(answerButtonsElement.firstChild)
+    answerButtonElement.removeChild(answerButtonElement.firstChild)
   }
 }
 
 function selectAnswer(e) {
-  const selectedButton = e.target
+  const selectedButton = e.target;
   const correct = selectedButton.dataset.correct
   setStatusClass(document.body, correct)
   Array.from(answerButtonElement.children).forEach(button => {
@@ -56,28 +59,28 @@ function selectAnswer(e) {
   if (shuffledQuestions.length > currentQuestionIndex + 1) {
     nextButton.classList.remove('hide')
   } else {
-    startButton.innerText = 'Restart'
+    startButton.innerText = "Restart"
     startButton.classList.remove('hide')
   }
 }
 
+
 function setStatusClass(element, correct) {
   clearStatusClass(element)
   if (correct) {
-    element.classList.add('correct')
+    element.classList.add("correct")
   } else {
-    element.classList.add('wrong')
+    element.classList.add("wrong")
   }
+
 }
 
+function clearStatusClass(element) {
 
+  element.classList.remove("correct")
 
+  element.classList.remove("wrong")
 
-function clearStatusClass (element) {
-  
-    element.classList.remove("correct")
-    element.classList.remove("wrong")
-  
 
 }
 
@@ -90,27 +93,27 @@ const questions = [
       { text: "The Death Star", correct: false },
       { text: "Doing his own thing, stop asking", correct: true }
     ]
-  }
+  },
+
+  {
+    question: "Who is the strongest?",
+    answers: [
+      { text: "Goku", correct: true },
+      { text: "Saitama", correct: true },
+      { text: "A vault Hunter", correct: true },
+      { text: "All of the above", correct: true }
+    ]
+  },
+
+  {
+    question: "Who was the OS?",
+    answers: [
+      { text: "Johnny Depp", correct: false },
+      { text: "Brad Pitt", correct: false },
+      { text: "Washington", correct: false },
+      { text: "Snoop Dog", correct: true }
+    ]
+  },
+
 ]
-//   {
-//     question :  "Who is the strongest?",
-//     answers: [ 
-//       { text: "Goku", correct: true},
-//       { text: "Saitama", correct: true},
-//       { text: "A vault Hunter", correct: true},
-//       { text: "All of the above", correct: true}
-//     ]
-//   },
-
-//   {
-//     question :  "Who was the OS?",
-//     answers: [ 
-//       { text: "Johnny Depp", correct: false},
-//       { text: "Brad Pitt", correct: false},
-//       { text: "Washington", correct: false},
-//       { text: "Snoop Dog", correct: true}
-//     ]
-//   },
-
-// ]
 
